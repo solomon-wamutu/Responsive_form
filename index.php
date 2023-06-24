@@ -50,6 +50,13 @@
                         <div class="register">
                             <p>Don't have an account <a href="#">Register</a></p>
                         </div>
+
+                    <div>
+                        <spa class="apsn">
+                            Sign up
+                        </spa>
+                    </div>
+                    
                 </form>
             </div>
         </div>
