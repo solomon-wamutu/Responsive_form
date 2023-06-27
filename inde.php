@@ -1,12 +1,42 @@
+<?php
+
+include('conf/config.php');
+if (isset($_POST['login'])) {
+
+$name = $_POST['name'];
+//double encryption
+$password = sha1(md5($_POST['password']));
+$email = $_POST['email'];
+
+  $result = "SELECT * FROM form WHERE name= ? ";
+  $stmt = $mysqli-> prepare($result);
+  $stmt ->bind_param("s", $name);
+  $stmt->execute();
+  $res = $stmt -> get_result();
+
+  if($res->num_rows > 0){
+
+    // $result = "DELETE FROM members WHERE userid > $res";
+    // $stmt = $connection-> prepare($result);
+    // $stmt->execute();
+    $error = "Dublicate username";
+  }
+        else {
+      $success = "Account Created";
+      $sel = "INSERT INTO form (name,password,email) VALUES (?,?,?)";
+      $stmt = $mysqli->prepare($sel);
+      $stmt->bind_param("sss",$name,$password,$email);
+      $stmt->execute();
+
+     
+        }
+        // $err = 'That username already exists' ;
+      }
+    // }
+?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
-</head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <?php include("partials/head.php"); ?>
 <body>
     <section>
         <div class="form-box">
@@ -72,5 +102,6 @@
     <script src="./swal.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="./js/swal.js"></script>
 </body>
 </html>
