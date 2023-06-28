@@ -63,7 +63,7 @@ $email = $_POST['email'];
                     </div>
 
                     <div class="forget">
-                        <span><input type="checkbox">Remember me</span><a href="#">Forgot Password</a>
+                        <span class="span"><input type="checkbox">Remember me</span><a href="#">Forgot Password</a>
                     </div>
                     <?php
                     $length = 8;
